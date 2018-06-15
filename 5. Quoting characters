@@ -1,0 +1,31 @@
+Quoting is used to remove the special meaning of characters or words
+
+1. Escape characters - used to remove the special meaning from a single character
+
+franky ~> date=20021226
+franky ~> echo $date
+20021226
+franky ~> echo \$date
+$date
+
+2. Single quotes - used to preserve the literal value of each character enclosed within the quotes
+
+franky ~> echo '$date'
+$date
+
+3. Double quotes - Using double quotes the literal value of all characters enclosed is preserved, except for the dollar sign, the backticks (backward single quotes, ``) and the backslash.
+The dollar sign and the backticks retain their special meaning within the double quotes. 
+The backslash retains its meaning only when followed by dollar, backtick, double quote, backslash or newline. Within double quotes, the backslashes are removed from the input stream when followed by one of these characters.
+
+franky ~> echo "$date"
+20021226
+franky ~> echo "`date`"
+Sun Apr 20 11:22:06 CEST 2003
+franky ~> echo "I'd say: \"Go for it!\""
+I'd say: "Go for it!"
+franky ~> echo "\"
+More input>"
+franky ~> echo "\\"
+\
+
+

@@ -1,0 +1,69 @@
+There are instances when you want to declare a variable as constant or of a particular type, which should not be changed.
+
+The syntax for declare is the following:
+declare OPTION(s) VARIABLE=value
+
+Following OPTIONS are available:
+1. -a - Variable is an array.
+
+2. -f - Use function names only.
+
+3. -i - The variable is to be treated as an integer; arithmetic evaluation is performed when the variable is assigned a value
+
+4. -p - Display the attributes and values of each variable. When -p is used, additional options are ignored.
+
+5. -r - Make variables read-only. These variables cannot then be assigned values by subsequent assignment statements, nor can they be unset.
+
+6. -t - Give each variable the trace attribute.
+
+7. -x - Mark each variable for export to subsequent commands via the environment.
+
+[bob in ~] declare -i VARIABLE=12
+[bob in ~] VARIABLE=string
+[bob in ~] echo $VARIABLE
+0
+[bob in ~] declare -p VARIABLE
+declare -i VARIABLE="0"
+[bob in ~] OTHERVAR=blah
+[bob in ~] declare -p OTHERVAR
+declare -- OTHERVAR="blah"
+
+
+Dereferencing the variables in an array -
+# If the index number is @ or *, all members of an array are referenced.[bob in ~] ARRAY=(one two three)
+[bob in ~] echo ${ARRAY[*]}
+one two three
+[bob in ~] echo $ARRAY[*]
+one[*]
+[bob in ~] echo ${ARRAY[2]}
+three
+[bob in ~] ARRAY[3]=four
+[bob in ~] echo ${ARRAY[*]}
+one two three four
+
+Deleting array variables-
+# The unset built-in is used
+[bob in ~] unset ARRAY[1]
+[bob in ~] echo ${ARRAY[*]}
+one three four
+[bob in ~] unset ARRAY
+[bob in ~] echo ${ARRAY[*]}
+<--no output-->
+
+Length of a variable-
+[bob in ~] echo $SHELL
+/bin/bash
+[bob in ~] echo ${#SHELL}
+9
+[bob in ~] ARRAY=(one two three)
+[bob in ~] echo ${#ARRAY}
+3
+
+Removing substrings-
+# To strip a number of characters, equal to OFFSET, from a variable, use this syntax:
+${VAR:OFFSET:LENGTH}
+[bob in ~] export STRING="thisisaverylongname"
+[bob in ~] echo ${STRING:4}
+isaverylongname
+[bob in ~] echo ${STRING:6:5}
+avery

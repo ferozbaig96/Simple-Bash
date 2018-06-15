@@ -1,0 +1,27 @@
+The here document provides a way of instructing the shell to read input from the current source until a line containing only the search string is found (no trailing blanks). All of the lines read up to that point are then used as the standard input for a command.
+
+The result is that you don't need to call on separate files; you can use shell-special characters, and it looks
+nicer than a bunch of echo's
+
+Example 1:
+# Start here document
+cat << BROWSERS
+mozilla
+links
+lynx
+konqueror
+opera
+netscape
+BROWSERS
+# End here document
+echo -n "Which is your favorite? "
+read browser
+echo "Starting $browser, please wait..."
+$browser &
+
+Example 2: 
+# To automatically install package
+# $1 param is package name
+yum install $1 << CONFIRM
+y
+CONFIRM

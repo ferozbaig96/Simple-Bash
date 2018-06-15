@@ -1,0 +1,28 @@
+Signals to your Bash shell-
+
+In the absence of any traps, an interactive Bash shell ignores SIGTERM and SIGQUIT. SIGINT is caught and handled, and if job control is active, SIGTTIN, SIGTTOU and SIGTSTP are also ignored.
+
+Sending signals using the shell-
+
+1. Ctrl+C - The interrupt signal, sends SIGINT to the job running in the foreground.
+2. Ctrl+Y - The delayed suspend character. Causes a running process to be stopped when it attempts to read input from the terminal. Control is returned to the shell, the user can foreground, background or kill the process. Delayed suspend is only available on operating systems supporting this feature.
+3. Ctrl+Z - The suspend signal, sends a SIGTSTP to a running program, thus stopping it and returning control to the shell.
+
+Usage of signals with kill-
+
+Using the kill command from /usr/bin, your system might enable extra options, such as the ability to kill processes from other than your own user ID and specifying processes by name, like with pgrep and pkill.
+
+Signal name, Signal value, Effect:
+SIGHUP, 1, Hangup
+SIGINT, 2, Interrupt from keyboard
+SIGKILL, 9, Kill signal
+SIGTERM, 15, Termination signal
+SIGSTOP, 17,19,23, Stop the process
+
+SIGKILL and SIGSTOP can not be caught, blocked or ignored.
+When killing a process or series of processes, it is common sense to start trying with the least dangerous signal, SIGTERM. That way, programs that care about an orderly shutdown get the chance to follow the procedures that they have been designed to execute when getting the SIGTERM signal, such as cleaning up and closing open files. If you send a SIGKILL to a process, you remove any chance for the process to do a tidy
+cleanup and shutdown, which might have unfortunate consequences.
+But if a clean termination does not work, the INT orKILL signals might be the only way. For instance, when a process does not die using Ctrl+C, it is best to use the kill -9 on that process ID
+
+
+

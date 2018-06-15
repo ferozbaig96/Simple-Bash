@@ -1,0 +1,7 @@
+Character classes 
+
+Character classes can be specified within the square braces, using the syntax [:CLASS:], where CLASS is defined in the POSIX standard and has one of the values
+"alnum", "alpha", "ascii", "blank", "cntrl", "digit", "graph", "lower", "print", "punct", "space", "upper", "word" or "xdigit".
+
+cathy ~> ls -ld [[:digit:]]*
+drwxrwxr-x	2 cathy		cathy		4096 Apr 20 13:45 2/

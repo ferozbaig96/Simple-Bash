@@ -1,0 +1,11 @@
+bash -x my_bash_script.sh
+
+OR
+
+set -x	# activate debugging from here
+...
+...
+...
+set +x	# stop debugging from here
+
+

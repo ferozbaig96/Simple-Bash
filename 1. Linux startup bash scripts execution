@@ -1,0 +1,13 @@
+Invoked as an interactive login shell, or with `--login'
+Interactive means you can enter commands. The shell is not running because a script has been activated. A login shell means that you got the shell after authenticating to the system, usually by giving your user name and password.
+Files read:
+• /etc/profile
+• ~/.bash_profile, ~/.bash_login or ~/.profile: first existing readable file is read
+• ~/.bash_logout upon logout.
+
+Invoked as an interactive non-login shell
+A non-login shell means that you did not have to authenticate to the system. For instance, when you open a terminal using an icon, or a menu item, that is a non-login shell.
+Files read:
+• ~/.bashrc
+This file is usually referred to in ~/.bash_profile:
+if [ -f ~/.bashrc ]; then . ~/.bashrc; fi

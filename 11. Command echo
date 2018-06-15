@@ -1,0 +1,4 @@
+Command echo 
+
+• -e: interprets backslash-escaped characters.
+• -n: suppresses the trailing newline.

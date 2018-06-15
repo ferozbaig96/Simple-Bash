@@ -1,0 +1,8 @@
+Command xargs vs exec:
+
+find "$1" -type f -a -atime +365 -exec rm -i {} \;
+
+The above find command can be replaced with the following:
+find options | xargs [commands_to_execute_on_found_files]
+
+The xargs command builds and executes command lines from standard input. This has the advantage that the command line is filled until the system limit is reached. Only then will the command to execute be called, in the above example this would be rm. If there are more arguments, a new command line will be used, until that one is full or until there are no more arguments. The same thing using find -exec calls on the command to execute on the found files every time a file is found. Thus, using xargs greatly speeds up your scripts and the performance of your machine.

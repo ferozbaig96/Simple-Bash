@@ -1,0 +1,9 @@
+In order to pass variables to a subshell, we need to export them :
+
+export VARNAME="value"
+
+----
+
+To unset a variable :
+
+unset VARNAME

@@ -1,0 +1,46 @@
+1. $* - All positional paramters (starting from one) separated by IFS special variable.
+
+2. $@ - Similar to $* but not buggy unlike $* (See https://stackoverflow.com/questions/12314451/accessing-bash-command-line-args-vs)
+Also $@ is set by default in for loop
+
+3. $# - Number of positional parameters
+
+4. $? - Exit status of the most recently executed foreground pipeline
+
+5. $- - A hyphen expands to the current option flags as specified upon invocation, by the set built-in command, or those set by the shell itself (such as the -i).
+
+6. $$ - Process ID of the shell
+
+7. $! - Process ID of the most recently executed background (asynchronous) command
+
+8. $0 - Name of the shell or shell script (0th index positional parameter)
+
+9. $_ - The underscore variable is set at shell startup and contains the absolute file name of the shell or script being executed as passed in the argument list. Subsequently, it expands to the last argument to the previous command, after expansion. It is also set to the full pathname of each command executed and placed in the environment exported to that command. When checking mail, this parameter holds the name of the mail file. (More at https://unix.stackexchange.com/questions/280453/understand-the-meaning-of)
+
+Example : 
+franky ~> grep dictionary /usr/share/dict/words
+dictionary
+
+franky ~> echo $_
+/usr/share/dict/words
+
+franky ~> echo $$
+10662
+
+franky ~> mozilla &
+[1] 11064
+
+franky ~> echo $!
+11064
+
+franky ~> echo $0
+bash
+
+franky ~> echo $?
+0
+
+franky ~> ls doesnotexist
+ls: doesnotexist: No such file or directory
+
+franky ~> echo $?
+1

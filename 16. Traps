@@ -1,0 +1,18 @@
+There might be situations when you don't want users of your scripts to exit untimely using keyboard abort sequences, for example because input has to be provided or cleanup has to be done. The trap statement catches these sequences and can be programmed to execute a list of commands upon catching those signals.
+
+The syntax for the trap statement is straightforward:
+trap [COMMANDS] [SIGNALS]
+
+This instructs the trap command to catch the listed SIGNALS, which may be signal names with or without the SIG prefix, or signal numbers. If a signal is 0 or EXIT, the COMMANDS are executed when the shell exits. If one of the signals is DEBUG, the list of COMMANDS is executed after every simple command. A signal may also be specified as ERR; in that case COMMANDS are executed each time a simple command exits with a non-zero status. Note that these commands will not be executed when the non-zero exit status comes
+from part of an if statement, or from a while or until loop. Neither will they be executed if a logical AND (&&) or OR (||) result in a non-zero exit code, or when a command's return status is inverted using the ! operator.
+
+#!/bin/bash
+# traptest.sh
+trap "echo Booh!" SIGINT SIGTERM
+echo "pid is $$"
+while :
+do
+# This is the same as "while true".
+sleep 60
+# This script is not really doing anything.
+done

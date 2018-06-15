@@ -1,0 +1,11 @@
+Functions either use the syntax
+
+function FUNCTION { COMMANDS; }
+or
+FUNCTION () { COMMANDS; }
+
+These commands are executed whenever FUNCTION is specified as the name of a command. The exit status is the exit status of the last command executed in the body.
+
+Common mistakes-
+1. The curly braces must be separated from the body by spaces, otherwise they are interpreted in the wrong way.
+2. The body of a function should end in a semicolon or a newline.

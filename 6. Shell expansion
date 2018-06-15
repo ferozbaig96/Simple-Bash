@@ -1,0 +1,48 @@
+1. Brace expansion - mechanism by which arbitrary strings may be generated
+
+franky ~> echo sp{el,il,al}l
+spell spill spall
+
+2. Tilde expansion - If a word begins with an unquoted tilde character ("~"), all of the characters up to the first unquoted slash (or all characters, if there is no unquoted slash) are considered a tilde-prefix. If the login name is the null string, the tilde is replaced with the value of the HOME shell variable.
+Tilde-prefix : ~+ means the value of the shell variable PWD
+Tilde-prefix : ~- means the value of the shell variable OLDPWD
+
+franky ~> export PATH="$PATH:~/testdir"
+
+3. Shell parameter and variable expansion - The "$" character introduces parameter expansion, command substitution, or arithmetic expansion. The basic form of parameter expansion is "${PARAMETER}"
+
+franky ~> echo $SHELL
+/bin/bash
+
+Indirect Expansion - If the first character of "PARAMETER" is an exclamation point, Bash uses the value of the variable formed from the rest of "PARAMETER" as the name of the variable; this variable is then expanded and that value is used in the rest of the substitution, rather than the value of "PARAMETER" itself.
+
+franky ~> echo ${!SHEL*}
+SHELL SHELLOPTS
+
+4. Command substitution - allows the output of a command to replace the command itself. Command substitution occurs when a command is enclosed like this:
+$(command)
+or like this using backticks:
+`command`
+
+echo `date`
+Thu Feb 6 10:06:20 CET 2003
+
+5. Arithmetic expansion - allows the evaluation of an arithmetic expression and the substitution of the result. The format for arithmetic expansion is:
+$(( EXPRESSION ))
+Wherever possible, Bash users should try to use the syntax with square brackets:
+$[ EXPRESSION ]
+
+franky ~> echo $[365*24]
+8760
+
+6. Process substitution - Process substitution is supported on systems that support named pipes (FIFOs) or the /dev/fd method of naming open files. It takes the form of
+<(LIST)
+or
+>(LIST)
+
+(More at https://unix.stackexchange.com/questions/17107/process-substitution-and-pipe)
+
+
+
+
+
