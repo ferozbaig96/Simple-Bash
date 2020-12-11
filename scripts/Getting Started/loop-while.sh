@@ -20,3 +20,16 @@ while read
 do
 	echo $REPLY
 done < /etc/passwd
+
+# ----------
+# https://bash.cyberciti.biz/guide/While_loop
+
+# IFS is used to set field separator (default is while space).
+# The -r option to read command disables backslash escaping (e.g., \n, \t).
+# This is failsafe while read loop for reading text files.
+
+
+while IFS= read -r line
+do
+	command1 on $line
+done < input_file
