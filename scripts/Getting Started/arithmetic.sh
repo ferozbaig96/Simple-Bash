@@ -42,11 +42,15 @@ str="Hello"
 x=`expr length $str`
 echo "Length of $str : $x"
 
-#To find the index/position of character in a string
+# To find the index/position of character in a string
 str="hello"
 x=`expr index $str l`
 echo "Index of l in $str : $x"
 
+# To find substring
+str="hello world"
+echo ${str:2}     #prints llo world
+echo ${str:2:2}   # prints ll
 
 
 
