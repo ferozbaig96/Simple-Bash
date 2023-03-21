@@ -33,3 +33,20 @@ while IFS= read -r line
 do
 	command1 on $line
 done < input_file
+
+
+# ----------
+# https://stackoverflow.com/questions/13122441/how-do-i-read-a-variable-on-a-while-loop
+# To take input from a multi-line variable
+
+while IFS= read -r line
+do
+    echo "$line"
+done <<< "$the_list"
+
+# IFS= sets $IFS to the empty string (so it doesn't contain any characters at all). 
+# In this case, since there's only one field, its only effect is to prevent the removal of leading IFS-characters from the start of the line. 
+# # To see what I mean, compare 
+# 	read foo <<< ' bar' ; echo "$foo" 
+# with
+# 	IFS= read foo <<< ' bar' ; echo "$foo"
